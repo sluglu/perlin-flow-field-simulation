@@ -30,7 +30,6 @@ int particlesNum = 100000;
 particle particles[1000000];
 int const width = 2560;
 int const height = 1600;
-int numThread = 1000;
 perlinField field;
 
 int getResolution(){
@@ -66,19 +65,15 @@ void update(int a, int b){
     }
 
 void particleUpdate(){
+    int numThread = std::thread::hardware_concurrency();
     int c = particlesNum/numThread;
     std::thread threads[numThread];
-    for(int i=0;i < numThread-1; i++){
+    for(int i = 0; i < numThread; i++){
         threads[i] = std::thread(update, i*c, (i+1)*c);
-        //threads[i].detach();
     }
-    threads[numThread-1] = std::thread(update, 4*c, particlesNum+1);
-    //threads[numThread-1].detach();
-    for(int i=0;i < numThread-1; i++){
+    for(int i = 0; i < numThread; i++){
         threads[i].join();
-        //threads[i].detach();
     }
-    threads[numThread-1].join();
 }
 
 void particleDraw(bool mode){
