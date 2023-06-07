@@ -67,7 +67,7 @@ void update(int a, int b){
 void particleUpdate(){
     int numThread = std::thread::hardware_concurrency();
     int c = particlesNum/numThread;
-    std::thread threads[numThread];
+    std::vector<std::thread> threads(numThread);
     for(int i = 0; i < numThread; i++){
         threads[i] = std::thread(update, i*c, (i+1)*c);
     }

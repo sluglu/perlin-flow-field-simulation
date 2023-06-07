@@ -1,5 +1,5 @@
 #include "perlinField.h"
-#include <FastNoiseLite.h>
+#include <FastNoiseLite/FastNoiseLite.h>
 #include <iostream>
 
 void perlinField::fieldUpdate(){
