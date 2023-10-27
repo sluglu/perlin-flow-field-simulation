@@ -17,12 +17,8 @@ file(GLOB SOURCE_FILES src/*.cpp)
 # Add an executable target
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES} ${SHADER_FILES})
 
-add_subdirectory(glm)
-
-target_link_libraries(${PROJECT_NAME} glm)
-
 #target_link_libraries(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/freeglut/lib/freeglut.lib)
 
-add_subdirectory(imgui)
+add_subdirectory(barebone-engine)
 
-target_link_libraries(${PROJECT_NAME} imgui)
+target_link_libraries(${PROJECT_NAME} barebone-engine)
